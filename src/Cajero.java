@@ -17,7 +17,13 @@ public class Cajero extends javax.swing.JFrame {
     public Cajero() {
         initComponents();
         setLocationRelativeTo(null); 
+        
+         billetes.put(10000, 100);
+         billetes.put(20000, 100);
+         billetes.put(50000, 100);
+         billetes.put(100000, 100);
     }
+    
         
 
     /**
