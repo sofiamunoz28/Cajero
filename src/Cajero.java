@@ -3,20 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-/**
- *
- * @author sofi_
- */
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
 public class Cajero extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Cajero.class.getName());
 
-    /**
-     * Creates new form Cajero
-     */
+  HashMap<Integer, Integer> billetes = new HashMap<>();   // clave = denominación, valor = cantidad
+    int[] denominaciones = {100000, 50000, 20000, 10000};   // para recorrer de mayor a menor
+    DefaultTableModel modeloTabla;
+    String numero = "";  
+    
     public Cajero() {
         initComponents();
+        setLocationRelativeTo(null); 
     }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
