@@ -56,6 +56,14 @@ public class Cajero extends javax.swing.JFrame {
     String formato(int valor) {
         return String.format("%,d", valor).replace(",", ".");
     }
+    
+          private  int saldoTotal() {
+        int total = 0;
+        for (int denominacion : billetes.keySet()) {
+            total = total + denominacion * billetes.get(denominacion);
+        }
+        return total;
+    }
 
    
  
