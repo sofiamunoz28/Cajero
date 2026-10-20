@@ -14,7 +14,7 @@ public class Cajero extends javax.swing.JFrame {
     DefaultTableModel modeloTabla;
     String numero = "";  
     
-    public Cajero() {
+    private void Cajero() {
         initComponents();
         setLocationRelativeTo(null); 
         
@@ -22,6 +22,25 @@ public class Cajero extends javax.swing.JFrame {
          billetes.put(20000, 100);
          billetes.put(50000, 100);
          billetes.put(100000, 100);
+    }
+    
+    private void escribir(String digito) {
+        if (numero.length() < 9) {   // límite para que no se pase del tamaño de un int
+            numero = numero + digito;
+        }
+        txtPantalla.setText(numero);
+    }
+
+    private void limpiar() {
+        numero = "";
+        txtPantalla.setText("");
+    }
+
+    private void retroceder() {
+        if (numero.length() > 0) {
+            numero = numero.substring(0, numero.length() - 1);
+        }
+        txtPantalla.setText(numero);
     }
     
         
@@ -38,8 +57,8 @@ public class Cajero extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtPatalla = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Pantalla = new javax.swing.JScrollPane();
+        txtPantalla = new javax.swing.JTextArea();
         btn1 = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
@@ -76,39 +95,51 @@ public class Cajero extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 0, 204));
         jLabel1.setText("CAJERO AUTOMATICO");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        txtPatalla.setViewportView(jTextArea1);
+        txtPantalla.setEditable(false);
+        txtPantalla.setColumns(20);
+        txtPantalla.setRows(5);
+        Pantalla.setViewportView(txtPantalla);
 
         btn1.setText("1");
         btn1.addActionListener(this::btn1ActionPerformed);
 
         btn2.setText("2");
+        btn2.addActionListener(this::btn2ActionPerformed);
 
         btn3.setText("3");
+        btn3.addActionListener(this::btn3ActionPerformed);
 
         btn4.setText("4");
+        btn4.addActionListener(this::btn4ActionPerformed);
 
         btn5.setText("5");
+        btn5.addActionListener(this::btn5ActionPerformed);
 
         btn6.setText("6");
+        btn6.addActionListener(this::btn6ActionPerformed);
 
         btn7.setText("7");
+        btn7.addActionListener(this::btn7ActionPerformed);
 
         btn8.setText("8");
+        btn8.addActionListener(this::btn8ActionPerformed);
 
         btn9.setText("9");
+        btn9.addActionListener(this::btn9ActionPerformed);
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
         btn0.setText("0");
+        btn0.addActionListener(this::btn0ActionPerformed);
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(this::btnBorrarActionPerformed);
 
         btnRetirar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRetirar.setForeground(new java.awt.Color(255, 51, 204));
         btnRetirar.setText("RETIRAR");
+        btnRetirar.addActionListener(this::btnRetirarActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 204));
@@ -162,7 +193,7 @@ public class Cajero extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -176,7 +207,7 @@ public class Cajero extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(txtPatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn1)
@@ -210,8 +241,56 @@ public class Cajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        // TODO add your handling code here:
+       escribir("1");
     }//GEN-LAST:event_btn1ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+       escribir("2");
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+       escribir("3");
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        escribir("4");
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        escribir("5");
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+        escribir("6");
+    }//GEN-LAST:event_btn6ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        escribir("7");
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+        escribir("8");
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        escribir ("9");
+    }//GEN-LAST:event_btn9ActionPerformed
+
+    private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
+        escribir("0");
+    }//GEN-LAST:event_btn0ActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        retroceder();
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+        retirar();
+    }//GEN-LAST:event_btnRetirarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +318,7 @@ public class Cajero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane Pantalla;
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
@@ -257,8 +337,13 @@ public class Cajero extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable tabla;
-    private javax.swing.JScrollPane txtPatalla;
+    private javax.swing.JTextArea txtPantalla;
     // End of variables declaration//GEN-END:variables
+
+
+
+    private void retirar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
