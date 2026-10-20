@@ -56,8 +56,6 @@ public class Cajero extends javax.swing.JFrame {
     String formato(int valor) {
         return String.format("%,d", valor).replace(",", ".");
     }
-    
- 
 
    
  
