@@ -57,12 +57,37 @@ public class Cajero extends javax.swing.JFrame {
         return String.format("%,d", valor).replace(",", ".");
     }
     
-          private  int saldoTotal() {
+    private  int saldoTotal() {
         int total = 0;
         for (int denominacion : billetes.keySet()) {
             total = total + denominacion * billetes.get(denominacion);
         }
         return total;
+    }
+    
+          
+    private void retirar() {
+        if (numero.equals("")) {
+            txtPantalla.setText("Ingrese un monto");
+            return;
+        }
+
+        int monto = Integer.parseInt(numero);
+        numero = "";
+
+        
+        if (monto < 10000 || monto > 1000000) {
+            txtPantalla.setText("ERROR: el retiro debe ser entre 10.000 y 1.000.000.\nIngrese el monto de nuevo.");
+            return;
+        }
+        if (monto % 10000 != 0) {
+            txtPantalla.setText("ERROR: el monto debe ser múltiplo de 10.000.\nIngrese el monto de nuevo.");
+            return;
+        }
+        if (monto > saldoTotal()) {
+            txtPantalla.setText("ERROR: el cajero no tiene saldo suficiente.");
+            return;
+        }
     }
 
    
@@ -367,7 +392,3 @@ public class Cajero extends javax.swing.JFrame {
 
 
 
-    private void retirar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-}
