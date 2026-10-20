@@ -9,8 +9,8 @@ public class Cajero extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Cajero.class.getName());
 
-  HashMap<Integer, Integer> billetes = new HashMap<>();   // clave = denominación, valor = cantidad
-    int[] denominaciones = {100000, 50000, 20000, 10000};   // para recorrer de mayor a menor
+  HashMap<Integer, Integer> billetes = new HashMap<>();   
+    int[] denominaciones = {100000, 50000, 20000, 10000};   
     DefaultTableModel modeloTabla;
     String numero = "";  
     
@@ -25,7 +25,7 @@ public class Cajero extends javax.swing.JFrame {
     }
     
     private void escribir(String digito) {
-        if (numero.length() < 9) {   // límite para que no se pase del tamaño de un int
+        if (numero.length() < 9) {   
             numero = numero + digito;
         }
         txtPantalla.setText(numero);
@@ -43,6 +43,22 @@ public class Cajero extends javax.swing.JFrame {
         txtPantalla.setText(numero);
     }
     
+    private void actualizarTabla() {
+        modeloTabla.setRowCount(0);   
+        for (int i = denominaciones.length - 1; i >= 0; i--) {  
+            int denominacion = denominaciones[i];
+            int cantidad = billetes.get(denominacion);
+            modeloTabla.addRow(new Object[]{
+                formato(denominacion), cantidad, formato(denominacion * cantidad)});
+        }
+    }
+    
+    String formato(int valor) {
+        return String.format("%,d", valor).replace(",", ".");
+    }
+
+   
+ 
         
 
     /**
