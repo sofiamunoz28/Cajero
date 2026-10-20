@@ -88,7 +88,30 @@ public class Cajero extends javax.swing.JFrame {
             txtPantalla.setText("ERROR: el cajero no tiene saldo suficiente.");
             return;
         }
+        
+        HashMap<Integer, Integer> entrega = calcularEntrega(monto);
+        if (entrega == null) {
+            txtPantalla.setText("ERROR: no hay billetes suficientes para entregar ese monto.");
+            return;
+        }
+        
+         for (int denominacion : denominaciones) {
+            int nuevaCantidad = billetes.get(denominacion) - entrega.get(denominacion);
+            billetes.put(denominacion, nuevaCantidad);
+        }
+
+    
+        String texto = "Retiro satisfactorio: " + formato(monto) + "\n";
+        for (int denominacion : denominaciones) {
+            if (entrega.get(denominacion) > 0) {
+                texto = texto + entrega.get(denominacion) + " billete(s) de " + formato(denominacion) + "\n";
+            }
+        }
+        txtPantalla.setText(texto);
+        actualizarTabla();
+        
     }
+
 
    
  
