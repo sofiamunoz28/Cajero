@@ -120,7 +120,7 @@ public class Cajero extends javax.swing.JFrame {
         
         int resto = monto;
 
-        // Reglas especiales
+        
         if (monto == 50000) {
             entrega.put(20000, 2);
             entrega.put(10000, 1);
@@ -129,7 +129,20 @@ public class Cajero extends javax.swing.JFrame {
             entrega.put(50000, 1);
             entrega.put(20000, 2);
             entrega.put(10000, 1);
-            resto = monto - 100000;   // lo que falta se completa abajo
+            resto = monto - 100000;  
+        }
+        
+        for (int denominacion : denominaciones) {
+            int disponibles = billetes.get(denominacion) - entrega.get(denominacion);
+            if (disponibles < 0) {
+                disponibles = 0;
+            }
+            int cantidad = resto / denominacion;
+            if (cantidad > disponibles) {
+                cantidad = disponibles;
+            }
+            entrega.put(denominacion, entrega.get(denominacion) + cantidad);
+            resto = resto - cantidad * denominacion;
         }
 
 
