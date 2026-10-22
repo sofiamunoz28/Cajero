@@ -111,6 +111,26 @@ public class Cajero extends javax.swing.JFrame {
         actualizarTabla();
         
     }
+    
+     HashMap<Integer, Integer> calcularEntrega(int monto) {
+        HashMap<Integer, Integer> entrega = new HashMap<>();
+        for (int denominacion : denominaciones) {
+            entrega.put(denominacion, 0);
+        }
+        
+        int resto = monto;
+
+        // Reglas especiales
+        if (monto == 50000) {
+            entrega.put(20000, 2);
+            entrega.put(10000, 1);
+            resto = 0;
+        } else if (monto >= 100000) {
+            entrega.put(50000, 1);
+            entrega.put(20000, 2);
+            entrega.put(10000, 1);
+            resto = monto - 100000;   // lo que falta se completa abajo
+        }
 
 
    
