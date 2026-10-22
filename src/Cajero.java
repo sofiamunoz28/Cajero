@@ -22,6 +22,11 @@ public class Cajero extends javax.swing.JFrame {
          billetes.put(20000, 100);
          billetes.put(50000, 100);
          billetes.put(100000, 100);
+         
+        modeloTabla = new DefaultTableModel(
+        new String[]{"Denominación", "Cantidad", "Dinero total"}, 0);
+        tabla.setModel(modeloTabla);
+        actualizarTabla();
 
     }
     
