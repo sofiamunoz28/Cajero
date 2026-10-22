@@ -14,7 +14,7 @@ public class Cajero extends javax.swing.JFrame {
     DefaultTableModel modeloTabla;
     String numero = "";  
     
-    private void Cajero() {
+    public  Cajero() {
         initComponents();
         setLocationRelativeTo(null); 
         
@@ -22,6 +22,7 @@ public class Cajero extends javax.swing.JFrame {
          billetes.put(20000, 100);
          billetes.put(50000, 100);
          billetes.put(100000, 100);
+
     }
     
     private void escribir(String digito) {
@@ -144,6 +145,17 @@ public class Cajero extends javax.swing.JFrame {
             entrega.put(denominacion, entrega.get(denominacion) + cantidad);
             resto = resto - cantidad * denominacion;
         }
+        
+        for (int denominacion : denominaciones) {
+            if (entrega.get(denominacion) > billetes.get(denominacion)) {
+                return null;
+            }
+        }
+        if (resto != 0) {
+            return null;
+        }
+        return entrega;
+     }
 
 
    
@@ -445,6 +457,7 @@ public class Cajero extends javax.swing.JFrame {
     private javax.swing.JTable tabla;
     private javax.swing.JTextArea txtPantalla;
     // End of variables declaration//GEN-END:variables
+}
 
 
 
